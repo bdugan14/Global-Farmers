@@ -5,14 +5,44 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>exporterContact</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Exporter Profile</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+  <!-- Name/photo -->
+<ion-card>
+  <img src="http://burgerconquest.com/wp-content/uploads/2014/08/Certified-Angus-Beef-logo_burger_conquest_what_is.jpg">
 
+  <ion-card-header>
+    Iowa Premium, LLC
+  </ion-card-header>
+
+  <ion-card-content>
+    <p> Region: <strong>United States</strong> </p>
+    <p> Email: <a href="mailto:info@iowapremium.com">info@iowapremium.com</a> </p>
+    <p> Offer Range: $250-325/cwt</p>
+      <ion-input placeholder="Send Iowa Premium, LLC a message" #message></ion-input>
+    <div style="text-align: center;">
+      <button ion-button secondary (click)="sendMessage(message)">Send Message</button>
+    </div>
+  </ion-card-content>
+
+</ion-card>
+<ion-card>
+
+  <ion-card-header>
+    <h4>Cattle Compliance Requirements:</h4>
+  </ion-card-header>
+
+  <ion-card-content>
+    GSRB, USDA, PRODUZINDO CERTO
+  </ion-card-content>
+
+</ion-card>
 </ion-content>

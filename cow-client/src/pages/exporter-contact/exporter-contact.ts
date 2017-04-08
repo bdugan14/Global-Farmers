@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the ExporterContact page.
@@ -14,11 +14,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ExporterContact {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExporterContact');
+  }
+
+  sendMessage(message: HTMLInputElement) {
+    console.log('sending message: ', message)
+    let toast = this.toastCtrl.create({
+      message: `Message "${message.value}" was sent successfully`,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+    message.value = '';
   }
 
 }
