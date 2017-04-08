@@ -1,0 +1,16 @@
+{
+  "name": "internet-of-cows",
+  "version": "1.0.0",
+  "description": "internet-of-cows",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js",
+    "develop": "node server.js",
+    "test": ""
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
