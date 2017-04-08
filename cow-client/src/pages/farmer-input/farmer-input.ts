@@ -1,6 +1,45 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+export const benchmarks = [{
+    requirement: "Your farm has no history of Anthrax, Anjeszsky’s Disease, Tuberculosis, Trichinosis for the past 12 months?"
+  },
+  {
+    requirement: "No restrictions or quarantine for your area?"
+  },
+  {
+    requirement: "Any Antibiotics used? (In the last 30 days?)"
+  },
+  {
+    requirement: "Free Range?"
+  },
+  {
+    requirement: "Grass feed"
+  },
+  {
+    requirement: "Corn feed."
+  },
+  {
+    requirement: "Hormones?"
+  },
+  {
+    requirement: "Deforastation Free"
+  },
+  {
+    requirement: "Forced Labor Free"
+  },
+  {
+    requirement: "Indigenous Land Free"
+  }
+  ,
+  {
+    requirement: "No Protected Areas"
+  }
+  ,
+  {
+    requirement: "No Embargo"
+  }];
+
 @Component({
   selector: 'farmer-input',
   templateUrl: 'farmer-input.html'
@@ -22,46 +61,7 @@ export class FarmerInputPage {
   };
 
   getProtocols(){
-    this.protocols = [
-      {
-        requirement: "Your farm has no history of Anthrax, Anjeszsky’s Disease, Tuberculosis, Trichinosis for the past 12 months?"
-      },
-      {
-        requirement: "No restrictions or quarantine for your area?"
-      },
-      {
-        requirement: "Any Antibiotics used? (In the last 30 days?)"
-      },
-      {
-        requirement: "Free Range?"
-      },
-      {
-        requirement: "Grass feed"
-      },
-      {
-        requirement: "Corn feed."
-      },
-      {
-        requirement: "Hormones?"
-      },
-      {
-        requirement: "Deforastation Free"
-      },
-      {
-        requirement: "Forced Labor Free"
-      },
-      {
-        requirement: "Indigenous Land Free"
-      }
-      ,
-      {
-        requirement: "No Protected Areas"
-      }
-      ,
-      {
-        requirement: "No Embargo"
-      }
-    ];
+    this.protocols = benchmarks;
   }
 
   getCountries(){
