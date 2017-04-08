@@ -45095,6 +45095,7 @@ var cordovaWarn = function (pluginName, method) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__farmer_dashboard_farmer_dashboard__ = __webpack_require__(309);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return benchmarks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FarmerInputPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -45106,6 +45107,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 var benchmarks = [{
@@ -45195,15 +45197,19 @@ var FarmerInputPage = (function () {
             "Watusi"
         ];
     };
+    FarmerInputPage.prototype.goToDashboard = function () {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__farmer_dashboard_farmer_dashboard__["a" /* FarmerDashboard */]);
+    };
     return FarmerInputPage;
 }());
 FarmerInputPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({
-        selector: 'farmer-input',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-input/farmer-input.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title><img src="assets/icon/icon.png" style="height:25px" alt=""> Farmer Input</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12>\n        <ion-card>\n          <ion-card-content>\n            <ion-card-title>\n              Add Farmer Data\n            </ion-card-title>\n            <p>\n              Hello Dear Farmer, welcome to GlobalFarmers. Tell us about your ranch:\n            </p>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col col-12>\n        <ion-card>\n          <ion-card-content>\n            <ion-list>\n              <ion-item>\n                <ion-label color="dark">My animals were born in: </ion-label>\n                <ion-select [(ngModel)]="born_country">\n                  <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>\n                </ion-select>\n              </ion-item>\n              <ion-item>\n                <ion-label color="dark">They have lived the last 30 days in: </ion-label>\n                <ion-select [(ngModel)]="last_country">\n                  <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>\n                </ion-select>\n              </ion-item>\n              <ion-item>\n                <ion-label color="dark">Livestock Breed</ion-label>\n                <ion-select [(ngModel)]="breed">\n                  <ion-option *ngFor="let breed of breeds" value="{{breed}}">{{breed}}</ion-option>\n                </ion-select>\n              </ion-item>\n              <ion-item *ngFor="let protocol of protocols">\n                <ion-label>{{ protocol.requirement }}</ion-label>\n                <ion-checkbox color="secondary" checked="false"></ion-checkbox>\n              </ion-item>\n            </ion-list>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n    <ion-row text-center>\n      <ion-col col-12>\n        <button large ion-button secondary menuToggle>Find Exporters for me</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-input/farmer-input.html"*/
+        selector: 'farmer-input',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-input/farmer-input.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title><img src="assets/icon/icon.png" style="height:25px" alt=""> Farmer Input</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12>\n        <ion-card>\n          <ion-card-content>\n            <ion-card-title>\n              Add Farmer Data\n            </ion-card-title>\n            <p>\n              Hello Dear Farmer, welcome to GlobalFarmers. Tell us about your ranch:\n            </p>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col col-12>\n        <ion-card>\n          <ion-card-content>\n            <ion-list>\n              <ion-item>\n                <ion-label color="dark">My animals were born in: </ion-label>\n                <ion-select [(ngModel)]="born_country">\n                  <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>\n                </ion-select>\n              </ion-item>\n              <ion-item>\n                <ion-label color="dark">They have lived the last 30 days in: </ion-label>\n                <ion-select [(ngModel)]="last_country">\n                  <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>\n                </ion-select>\n              </ion-item>\n              <ion-item>\n                <ion-label color="dark">Livestock Breed</ion-label>\n                <ion-select [(ngModel)]="breed">\n                  <ion-option *ngFor="let breed of breeds" value="{{breed}}">{{breed}}</ion-option>\n                </ion-select>\n              </ion-item>\n              <ion-item *ngFor="let protocol of protocols">\n                <ion-label>{{ protocol.requirement }}</ion-label>\n                <ion-checkbox color="secondary" checked="false"></ion-checkbox>\n              </ion-item>\n            </ion-list>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n    <ion-row text-center>\n      <ion-col col-12>\n        <button large ion-button secondary (click)="goToDashboard()">Done</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-input/farmer-input.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object])
 ], FarmerInputPage);
 
+var _a;
 //# sourceMappingURL=farmer-input.js.map
 
 /***/ }),
@@ -104746,14 +104752,15 @@ var MyApp = (function () {
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */]),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */])
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */]) === "function" && _a || Object)
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object])
 ], MyApp);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -114564,8 +114571,8 @@ var FarmerDashboard = (function () {
     FarmerDashboard.prototype.ngOnInit = function () {
         this.setupMatches();
         this.priceRange = {
-            min: 5,
-            max: 50
+            min: 100,
+            max: 250
         };
         this.potential = {
             benchmarksRequired: 2,
@@ -114588,11 +114595,12 @@ var FarmerDashboard = (function () {
 FarmerDashboard = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({
-        selector: 'page-farmer-dashboard',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-dashboard/farmer-dashboard.html"*/'<!--\n  Generated template for the FarmerDashboard page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title><img src="assets/icon/icon.png" style="height:25px" alt=""> Your Dashboard!</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n  <ion-card (click)="viewMatches()">\n    <ion-card-header>\n      Matches\n    </ion-card-header>\n    <ion-card-content>\n      You have {{matches.length}} matches!\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card>\n    <ion-card-header>\n      Current\n    </ion-card-header>\n    <ion-card-content>\n      You can make between {{priceRange.min}} and {{priceRange.max}} dollars per pound based on your matches!\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card>\n    <ion-card-header>\n      Potential\n    </ion-card-header>\n    <ion-card-content>\n      You only need to apply {{potential.benchmarksRequired}} more benchmarks to gain {{potential.matches}} more matches for a potential gain of {{potential.maxIncomeIncrease}} per pound!\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-dashboard/farmer-dashboard.html"*/,
+        selector: 'page-farmer-dashboard',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-dashboard/farmer-dashboard.html"*/'<!--\n  Generated template for the FarmerDashboard page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title><img src="assets/icon/icon.png" style="height:25px" alt=""> Farmer Dashboard</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n  <ion-card>\n    <ion-card-header>\n      You have {{matches.length}} matches!\n    </ion-card-header>\n    <ion-card-content>\n      <button ion-button (click)="viewMatches()">View Matches</button>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card>\n    <ion-card-content>\n      You can make between {{priceRange.min}} and {{priceRange.max}} dollars per cwt. based on your matches!\n    </ion-card-content>\n\n    <ion-item>\n      <div style="text-align:left;">\n        0\n        <span style="float:right;">1000</span>\n      </div>\n      <div style="width: 100%; height: 25px; position: relative; background-color: #95a5a6;">\n\n        <div style="background-color: #2ecc71; position: absolute; top: 0; bottom: 0; left: 10%; right: 65%;"></div>\n      </div>\n    </ion-item>\n\n\n  </ion-card>\n\n  <ion-card>\n    <ion-card-header>\n      Potential\n    </ion-card-header>\n    <ion-card-content>\n      You only need to meet {{potential.benchmarksRequired}} more benchmarks to match with {{potential.matches}} additional exporters to increase sale price to {{potential.maxIncomeIncrease}} per cwt.\n      <br>\n      <button ion-button style="margin-top: 10px"> Learn More </button>\n    </ion-card-content>\n\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-dashboard/farmer-dashboard.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object])
 ], FarmerDashboard);
 
+var _a, _b;
 //# sourceMappingURL=farmer-dashboard.js.map
 
 /***/ }),
