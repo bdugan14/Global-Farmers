@@ -6,43 +6,59 @@
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
-  <h3>Add Farmer Data</h3>
-  <p>
-    Hello farmer!
-  </p>
-  <p>
-    Welcome to GlobalFarmers. Tell us about your ranch:
-  </p>
-  <ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card>
+          <ion-card-content>
+            <ion-card-title>
+              Add Farmer Data
+            </ion-card-title>
+            <p>
+              Hello Dear Farmer, welcome to GlobalFarmers. Tell us about your ranch:
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label color="dark">My animals were born in: </ion-label>
+                <ion-select [(ngModel)]="born_country">
+                  <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label color="dark">They have lived the last 30 days in: </ion-label>
+                <ion-select [(ngModel)]="last_country">
+                  <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label color="dark">Livestock Breed</ion-label>
+                <ion-select [(ngModel)]="breed">
+                  <ion-option *ngFor="let breed of breeds" value="{{breed}}">{{breed}}</ion-option>
+                </ion-select>
+              </ion-item>
+              <ion-item *ngFor="let protocol of protocols">
+                <ion-label>{{ protocol.requirement }}</ion-label>
+                <ion-checkbox color="secondary" checked="false"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row text-center>
+      <ion-col col-12>
+        <button large ion-button secondary menuToggle>Find Exporters for me</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-    <ion-item>
-      <ion-label>My animals were born in: </ion-label>
-      <ion-select [(ngModel)]="born_country">
-        <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>They have lived the last 30 days in: </ion-label>
-      <ion-select [(ngModel)]="last_country">
-        <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Livestock Breed</ion-label>
-      <ion-select [(ngModel)]="breed">
-        <ion-option *ngFor="let breed of breeds" value="{{breed}}">{{breed}}</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item *ngFor="let protocol of protocols">
-      <ion-label>{{ protocol.requirement }}</ion-label>
-      <ion-checkbox color="secondary" checked="false"></ion-checkbox>
-    </ion-item>
-
-  </ion-list>
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
