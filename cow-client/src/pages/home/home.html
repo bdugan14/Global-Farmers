@@ -3,18 +3,48 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Global Farmers</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Welcome!</h3>
+<ion-content padding class="home card-background-page" text-center>
 
-  <!--<button ion-button secondary menuToggle>Toggle Menu</button>-->
-  <div>
-    <button ion-button secondary (click)="navToFarmer()">I am a Farmer</button>
-  </div>
-  <div>
-    <button ion-button secondary (click)="navToExporter()">I am an Exporter</button>
-  </div>
+  <ion-card-header>
+   <h3>Welcome to GlobalFarmers!</h3>
+  </ion-card-header>
+
+  <ion-grid>
+    <ion-row padding>
+      <ion-col col-12 col-md-6 col-lg-6 col-xl-6>
+        <ion-card>
+         <img style="height: 300px;" src="assets/img/home-farmer.jpg" />
+         <div class="card-title">I am a Farmer</div>
+         <div class="card-subtitle">
+           <button  ion-button secondary (click)="navToFarmer()">Join</button>
+         </div>
+       </ion-card>
+      </ion-col>
+      <ion-col col-12 col-md-6 col-lg-6 col-xl-6>
+       <ion-card>
+         <img style="height: 300px;" src="assets/img/home-exporter.jpg"/>
+         <div class="card-title">I am an Exporter</div>
+         <div class="card-subtitle">
+          <button ion-button secondary (click)="navToExporter()">Join</button>
+         </div>
+       </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-row responsive-sm>
+      <ion-col text-center>
+        <button ion-button secondary (click)="navToFarmer()">I am a Farmer</button>
+      </ion-col>
+    </ion-row>
+    <ion-row responsive-sm>
+      <ion-col text-center>
+        <button ion-button secondary (click)="navToExporter()">I am an Exporter</button>
+      </ion-col>
+    </ion-row> -->
+
+  </ion-grid>
 </ion-content>
