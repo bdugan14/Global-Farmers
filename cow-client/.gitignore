@@ -35,3 +35,4 @@ UserInterfaceState.xcuserstate
 
 #Node setup - custom to dev preferences
 .node-version
+.io-config.json
