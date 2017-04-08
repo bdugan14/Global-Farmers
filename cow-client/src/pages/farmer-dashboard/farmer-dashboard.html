@@ -10,28 +10,38 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><img src="assets/icon/icon.png" style="height:25px" alt=""> Your Dashboard!</ion-title>
+    <ion-title><img src="assets/icon/icon.png" style="height:25px" alt="">Farmer Dashboard!</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding style="background-color: #4e6882">
 
-  <ion-card (click)="viewMatches()">
+  <ion-card>
     <ion-card-header>
-      Matches
+      You have {{matches.length}} matches!
     </ion-card-header>
     <ion-card-content>
-      You have {{matches.length}} matches!
+      <button ion-button (click)="viewMatches()">View Matches</button>
     </ion-card-content>
   </ion-card>
 
   <ion-card>
-    <ion-card-header>
-      Current
-    </ion-card-header>
     <ion-card-content>
-      You can make between {{priceRange.min}} and {{priceRange.max}} dollars per pound based on your matches!
+      You can make between {{priceRange.min}} and {{priceRange.max}} dollars per cwt. based on your matches!
     </ion-card-content>
+
+    <ion-item>
+      <div style="text-align:left;">
+        0
+        <span style="float:right;">1000</span>
+      </div>
+      <div style="width: 100%; height: 25px; position: relative; background-color: #95a5a6;">
+
+        <div style="background-color: #2ecc71; position: absolute; top: 0; bottom: 0; left: 10%; right: 65%;"></div>
+      </div>
+    </ion-item>
+
+
   </ion-card>
 
   <ion-card>
@@ -39,7 +49,9 @@
       Potential
     </ion-card-header>
     <ion-card-content>
-      You only need to apply {{potential.benchmarksRequired}} more benchmarks to gain {{potential.matches}} more matches for a potential gain of {{potential.maxIncomeIncrease}} per pound!
+      You only need to meet {{potential.benchmarksRequired}} more benchmarks to match with {{potential.matches}} additional exporters to increase sale price to {{potential.maxIncomeIncrease}} per cwt.
+      <button ion-button style="margin-top: 10px"> Learn More </button>
     </ion-card-content>
+
   </ion-card>
 </ion-content>
