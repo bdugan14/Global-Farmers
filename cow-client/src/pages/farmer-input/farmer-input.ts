@@ -1,6 +1,24 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+export const benchmarks = [{
+      requirement: "Deforastation Free"
+    },
+    {
+        requirement: "Forced Labor Free"
+    },
+    {
+        requirement: "Indigenous Land Free"
+    }
+    ,
+    {
+        requirement: "No Protected Areas"
+    }
+    ,
+    {
+        requirement: "No Embargo"
+    }];
+
 @Component({
   selector: 'farmer-input',
   templateUrl: 'farmer-input.html'
