@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FarmerDashboard } from '../farmer-dashboard/farmer-dashboard';
 
 let reqBuilder = function(item){
   return {
@@ -28,10 +29,15 @@ export class ExporterInput {
     console.log('ionViewDidLoad ExporterInput');
   }
 
+  goToDashboard() {
+    this.navCtrl.setRoot(FarmerDashboard);
+  }
+
   ngOnInit(){
     this.getProtocols();
     this.getCountries();
   }
+
   getProtocols(){
     this.protocols = [
       'SAI',

@@ -13,25 +13,48 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <h3>
-    Welcome to GlobalFarmers. Tell us about your business:
-  </h3>
-  <ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card>
+          <ion-card-content>
+            <ion-card-title>
+              Add Exporter Data
+            </ion-card-title>
+            <p>
+              Hello Dear Exporter, welcome to GlobalFarmers. Tell us about your business:
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label  color="dark">I reside in: </ion-label>
+                <ion-select [(ngModel)]="born_country">
+                  <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>
+                </ion-select>
+              </ion-item>
+              <h2>I buy cattle that meets these benchmarks: </h2>
+              <ion-item *ngFor="let protocol of protocols">
+                <ion-label>{{ protocol.requirement }}</ion-label>
+                <ion-checkbox color="secondary" checked="false"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+            <ion-row text-center>
+              <ion-col col-12>
+                <button large ion-button secondary (click)="goToDashboard()">Done</button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-    <ion-item>
-      <ion-label>I reside in: </ion-label>
-      <ion-select [(ngModel)]="born_country">
-        <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-label>I buy cattle that meets these benchmarks: </ion-label>
-    <ion-item *ngFor="let protocol of protocols">
-      <ion-label>{{ protocol.requirement }}</ion-label>
-      <ion-checkbox color="secondary" checked="false"></ion-checkbox>
-    </ion-item>
-
-  </ion-list>
+  </ion-grid>
 </ion-content>

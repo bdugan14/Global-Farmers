@@ -26,10 +26,10 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
+      // { title: 'List', component: ListPage },
       { title: 'Farmer Input', component: FarmerInputPage },
-      { title: 'Farmer Contact TODO: rm from menu', component: FarmerContact },
-      { title: 'Exporter Contact TODO: rm from menu', component: ExporterContact },
+      { title: 'Farmer Profile', component: FarmerContact },
+      // { title: 'Exporter Contact TODO: rm from menu', component: ExporterContact },
       { title: 'Farmer Dashboard', component: FarmerDashboard },
       { title: 'Exporter Input', component: ExporterInput }
     ];
