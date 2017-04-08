@@ -8,11 +8,13 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Cow Menu Starter</h3>
+  <h3>Welcome!</h3>
 
-  <p>
-    hello cow!
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <!--<button ion-button secondary menuToggle>Toggle Menu</button>-->
+  <div>
+    <button ion-button secondary (click)="navToFarmer()">I am a Farmer</button>
+  </div>
+  <div>
+    <button ion-button secondary (click)="navToExporter()">I am an Exporter</button>
+  </div>
 </ion-content>
