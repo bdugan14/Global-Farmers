@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { FarmerDashboard } from '../farmer-dashboard/farmer-dashboard';
 
 export const benchmarks = [{
     requirement: "Your farm has no history of Anthrax, Anjeszsky’s Disease, Tuberculosis, Trichinosis for the past 12 months?"
@@ -104,5 +105,7 @@ export class FarmerInputPage {
     ]
   }
 
-
+  goToDashboard() {
+    this.navCtrl.setRoot(FarmerDashboard);
+  }
 }

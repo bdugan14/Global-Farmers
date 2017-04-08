@@ -38,8 +38,8 @@ export class FarmerDashboard {
 
     this.setupMatches();
     this.priceRange = {
-      min: 5,
-      max: 50
+      min: 100,
+      max: 250
     };
     this.potential = {
       benchmarksRequired: 2,
