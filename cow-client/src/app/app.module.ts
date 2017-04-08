@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { FarmerInputPage } from '../pages/farmer-input/farmer-input';
+import { ExporterInput} from '../pages/exporter-input/exporter-input';
 import { FarmerContact } from '../pages/farmer-contact/farmer-contact';
 import { FarmerDashboard } from '../pages/farmer-dashboard/farmer-dashboard';
 import { ExporterContact } from '../pages/exporter-contact/exporter-contact';
@@ -19,6 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     FarmerInputPage,
+    ExporterInput,
     FarmerContact,
     FarmerDashboard,
     ExporterContact
@@ -33,6 +35,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     FarmerInputPage,
+    ExporterInput,
     FarmerContact,
     FarmerDashboard,
     ExporterContact

@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 // TODO: replace with wizard
 import { ListPage } from '../list/list';
 import { FarmerInputPage } from '../farmer-input/farmer-input';
+import { ExporterInput } from '../exporter-input/exporter-input';
+
 
 @Component({
   selector: 'page-home',
@@ -14,12 +16,10 @@ export class HomePage {
 
   }
   navToFarmer(){
-    // TODO: farm wizard
-    this.navCtrl.push(FarmerInputPage)
+    this.navCtrl.push(FarmerInputPage);
   }
   navToExporter(){
-    // TODO: switch to exporter wizard page
-    this.navCtrl.push(ListPage)
+    this.navCtrl.push(ExporterInput);
   }
 
 

@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { FarmerInputPage } from '../pages/farmer-input/farmer-input';
+import { ExporterInput } from '../pages/exporter-input/exporter-input';
 import { FarmerContact } from '../pages/farmer-contact/farmer-contact';
 import { FarmerDashboard } from '../pages/farmer-dashboard/farmer-dashboard';
 import { ExporterContact } from '../pages/exporter-contact/exporter-contact';
@@ -29,7 +30,8 @@ export class MyApp {
       { title: 'Farmer Input', component: FarmerInputPage },
       { title: 'Farmer Contact TODO: rm from menu', component: FarmerContact },
       { title: 'Exporter Contact TODO: rm from menu', component: ExporterContact },
-      { title: 'Farmer Dashboard', component: FarmerDashboard }
+      { title: 'Farmer Dashboard', component: FarmerDashboard },
+      { title: 'Exporter Input', component: ExporterInput }
     ];
 
   }
