@@ -57153,6 +57153,7 @@ var StatusBar = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list_list__ = __webpack_require__(108);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -57165,15 +57166,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+// TODO: replace with wizard
+
 var HomePage = (function () {
     function HomePage(navCtrl) {
         this.navCtrl = navCtrl;
     }
+    HomePage.prototype.navToFarmer = function () {
+        // TODO: farm wizard
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__list_list__["a" /* ListPage */]);
+    };
+    HomePage.prototype.navToExporter = function () {
+        // TODO: switch to exporter wizard page
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__list_list__["a" /* ListPage */]);
+    };
     return HomePage;
 }());
 HomePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h3>Cow Menu Starter</h3>\n\n  <p>\n    hello cow!\n  </p>\n\n  <button ion-button secondary menuToggle>Toggle Menu</button>\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h3>Welcome!</h3>\n\n  <!--<button ion-button secondary menuToggle>Toggle Menu</button>-->\n  <div>\n    <button ion-button secondary (click)="navToFarmer()">I am a Farmer</button>\n  </div>\n  <div>\n    <button ion-button secondary (click)="navToExporter()">I am an Exporter</button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
 ], HomePage);
@@ -114201,10 +114212,33 @@ var FarmerInputPage = (function () {
     }
     FarmerInputPage.prototype.ngOnInit = function () {
         this.getProtocols();
+        this.getCountries();
+        this.getBreeds();
     };
     ;
     FarmerInputPage.prototype.getProtocols = function () {
         this.protocols = [
+            {
+                requirement: "Your farm has no history of Anthrax, Anjeszsky’s Disease, Tuberculosis, Trichinosis for the past 12 months?"
+            },
+            {
+                requirement: "No restrictions or quarantine for your area?"
+            },
+            {
+                requirement: "Any Antibiotics used? (In the last 30 days?)"
+            },
+            {
+                requirement: "Free Range?"
+            },
+            {
+                requirement: "Grass feed"
+            },
+            {
+                requirement: "Corn feed."
+            },
+            {
+                requirement: "Hormones?"
+            },
             {
                 requirement: "Deforastation Free"
             },
@@ -114222,15 +114256,54 @@ var FarmerInputPage = (function () {
             }
         ];
     };
+    FarmerInputPage.prototype.getCountries = function () {
+        this.countries = [
+            "United States",
+            "Canada",
+            "China",
+            "Colombia",
+            "Belgium",
+            "Brazil",
+            "New Zealand",
+            "Australia",
+            "Botswana",
+            "Ethiopia",
+            "Japan",
+            "Italy",
+            "Thailand",
+            "France"
+        ];
+    };
+    FarmerInputPage.prototype.getBreeds = function () {
+        this.breeds = [
+            "Aberdeen Angus",
+            "Belted Galloway",
+            "Brahman",
+            "Charolais",
+            "Dexter",
+            "Gelbvieh",
+            "Hereford",
+            "Holstein",
+            "Limousin",
+            "Piedmontese",
+            "Red Angus",
+            "Scottish Highland",
+            "Shorthorn",
+            "Simmental",
+            "Texas Longhorn",
+            "Watusi"
+        ];
+    };
     return FarmerInputPage;
 }());
 FarmerInputPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({
-        selector: 'farmer-input',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-input/farmer-input.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h3>Add Farmer Data</h3>\n  <p>\n    Hello farmer!\n  </p>\n  <p>\n    Welcome to OpenFarmers. Tell us about your ranch:\n  </p>\n  <ion-list>\n    <ion-item *ngFor="let protocol of protocols">\n      <ion-label>{{ protocol.requirement }}</ion-label>\n      <ion-checkbox color="secondary" checked="true"></ion-checkbox>\n    </ion-item>\n  </ion-list>\n  <button ion-button secondary menuToggle>Toggle Menu</button>\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-input/farmer-input.html"*/
+        selector: 'farmer-input',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-input/farmer-input.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h3>Add Farmer Data</h3>\n  <p>\n    Hello farmer!\n  </p>\n  <p>\n    Welcome to OpenFarmers. Tell us about your ranch:\n  </p>\n  <ion-list>\n\n    <ion-item>\n      <ion-label>My animals were born in: </ion-label>\n      <ion-select [(ngModel)]="born_country">\n        <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>They have lived the last 30 days in: </ion-label>\n      <ion-select [(ngModel)]="last_country">\n        <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Livestock Breed</ion-label>\n      <ion-select [(ngModel)]="breed">\n        <ion-option *ngFor="let breed of breeds" value="{{breed}}">{{breed}}</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item *ngFor="let protocol of protocols">\n      <ion-label>{{ protocol.requirement }}</ion-label>\n      <ion-checkbox color="secondary" checked="false"></ion-checkbox>\n    </ion-item>\n\n  </ion-list>\n  <button ion-button secondary menuToggle>Toggle Menu</button>\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-input/farmer-input.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object])
 ], FarmerInputPage);
 
+var _a;
 //# sourceMappingURL=farmer-input.js.map
 
 /***/ })

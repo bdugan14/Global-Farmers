@@ -16,10 +16,33 @@
     Welcome to OpenFarmers. Tell us about your ranch:
   </p>
   <ion-list>
+
+    <ion-item>
+      <ion-label>My animals were born in: </ion-label>
+      <ion-select [(ngModel)]="born_country">
+        <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>They have lived the last 30 days in: </ion-label>
+      <ion-select [(ngModel)]="last_country">
+        <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Livestock Breed</ion-label>
+      <ion-select [(ngModel)]="breed">
+        <ion-option *ngFor="let breed of breeds" value="{{breed}}">{{breed}}</ion-option>
+      </ion-select>
+    </ion-item>
+
     <ion-item *ngFor="let protocol of protocols">
       <ion-label>{{ protocol.requirement }}</ion-label>
-      <ion-checkbox color="secondary" checked="true"></ion-checkbox>
+      <ion-checkbox color="secondary" checked="false"></ion-checkbox>
     </ion-item>
+
   </ion-list>
   <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
