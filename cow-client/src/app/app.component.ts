@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { FarmerInputPage } from '../pages/farmer-input/farmer-input';
 import { FarmerContact } from '../pages/farmer-contact/farmer-contact';
 import { FarmerDashboard } from '../pages/farmer-dashboard/farmer-dashboard';
+import { ExporterContact } from '../pages/exporter-contact/exporter-contact';
 
 @Component({
   templateUrl: 'app.html'
@@ -28,6 +29,7 @@ export class MyApp {
       { title: 'List', component: ListPage },
       { title: 'Farmer Input', component: FarmerInputPage },
       { title: 'Farmer Contact TODO: rm from menu', component: FarmerContact },
+      { title: 'Exporter Contact TODO: rm from menu', component: ExporterContact },
       { title: 'Farmer Dashboard', component: FarmerDashboard }
     ];
 

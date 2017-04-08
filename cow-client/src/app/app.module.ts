@@ -8,6 +8,8 @@ import { ListPage } from '../pages/list/list';
 import { FarmerInputPage } from '../pages/farmer-input/farmer-input';
 import { FarmerContact } from '../pages/farmer-contact/farmer-contact';
 import { FarmerDashboard } from '../pages/farmer-dashboard/farmer-dashboard';
+import { ExporterContact } from '../pages/exporter-contact/exporter-contact';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -18,7 +20,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     FarmerInputPage,
     FarmerContact,
-    FarmerDashboard
+    FarmerDashboard,
+    ExporterContact
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     FarmerInputPage,
     FarmerContact,
-    FarmerDashboard
+    FarmerDashboard,
+    ExporterContact
   ],
   providers: [
     StatusBar,
