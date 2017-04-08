@@ -1,0 +1,45 @@
+<!--
+  Generated template for the FarmerDashboard page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Your Dashboard!</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card (click)="viewMatches()">
+    <ion-card-header>
+      Matches
+    </ion-card-header>
+    <ion-card-content>
+      You have {{matches.length}} matches!
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Current
+    </ion-card-header>
+    <ion-card-content>
+      You can make between {{priceRange.min}} and {{priceRange.max}} dollars per pound based on your matches!
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Potential
+    </ion-card-header>
+    <ion-card-content>
+      You only need to apply {{potential.benchmarksRequired}} more benchmarks to gain {{potential.matches}} more matches for a potential gain of {{potential.maxIncomeIncrease}} per pound!
+    </ion-card-content>
+  </ion-card>
+</ion-content>

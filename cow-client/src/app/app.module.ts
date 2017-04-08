@@ -6,6 +6,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { FarmerInputPage } from '../pages/farmer-input/farmer-input';
+import { FarmerContact } from '../pages/farmer-contact/farmer-contact';
+import { FarmerDashboard } from '../pages/farmer-dashboard/farmer-dashboard';
+import { ExporterContact } from '../pages/exporter-contact/exporter-contact';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,7 +18,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    FarmerInputPage
+    FarmerInputPage,
+    FarmerContact,
+    FarmerDashboard,
+    ExporterContact
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    FarmerInputPage
+    FarmerInputPage,
+    FarmerContact,
+    FarmerDashboard,
+    ExporterContact
   ],
   providers: [
     StatusBar,

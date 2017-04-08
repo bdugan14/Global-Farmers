@@ -1,6 +1,34 @@
 /******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	var parentJsonpFunction = window["webpackJsonp"];
+/******/ 	window["webpackJsonp"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
+/******/ 		// add "moreModules" to the modules object,
+/******/ 		// then flag all "chunkIds" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [], result;
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(installedChunks[chunkId])
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
+/******/ 		while(resolves.length)
+/******/ 			resolves.shift()();
+/******/
+/******/ 	};
+/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
+/******/
+/******/ 	// objects to store loaded and loading chunks
+/******/ 	var installedChunks = {
+/******/ 		0: 0
+/******/ 	};
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -26,6 +54,49 @@
 /******/ 		return module.exports;
 /******/ 	}
 /******/
+/******/ 	// This file contains only the entry chunk.
+/******/ 	// The chunk loading function for additional chunks
+/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
+/******/ 		if(installedChunks[chunkId] === 0)
+/******/ 			return Promise.resolve();
+/******/
+/******/ 		// an Promise means "currently loading".
+/******/ 		if(installedChunks[chunkId]) {
+/******/ 			return installedChunks[chunkId][2];
+/******/ 		}
+/******/ 		// start chunk loading
+/******/ 		var head = document.getElementsByTagName('head')[0];
+/******/ 		var script = document.createElement('script');
+/******/ 		script.type = 'text/javascript';
+/******/ 		script.charset = 'utf-8';
+/******/ 		script.async = true;
+/******/ 		script.timeout = 120000;
+/******/
+/******/ 		if (__webpack_require__.nc) {
+/******/ 			script.setAttribute("nonce", __webpack_require__.nc);
+/******/ 		}
+/******/ 		script.src = __webpack_require__.p + "" + chunkId + ".main.js";
+/******/ 		var timeout = setTimeout(onScriptComplete, 120000);
+/******/ 		script.onerror = script.onload = onScriptComplete;
+/******/ 		function onScriptComplete() {
+/******/ 			// avoid mem leaks in IE.
+/******/ 			script.onerror = script.onload = null;
+/******/ 			clearTimeout(timeout);
+/******/ 			var chunk = installedChunks[chunkId];
+/******/ 			if(chunk !== 0) {
+/******/ 				if(chunk) chunk[1](new Error('Loading chunk ' + chunkId + ' failed.'));
+/******/ 				installedChunks[chunkId] = undefined;
+/******/ 			}
+/******/ 		};
+/******/
+/******/ 		var promise = new Promise(function(resolve, reject) {
+/******/ 			installedChunks[chunkId] = [resolve, reject];
+/******/ 		});
+/******/ 		installedChunks[chunkId][2] = promise;
+/******/
+/******/ 		head.appendChild(script);
+/******/ 		return promise;
+/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -61,6 +132,9 @@
 /******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "build/";
+/******/
+/******/ 	// on error function for async loading
+/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 306);
@@ -40770,7 +40844,7 @@ function SplitPane_tsickle_Closure_declarations() {
 /* unused harmony reexport Modal */
 /* unused harmony reexport ModalController */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_123__components_nav_nav__ = __webpack_require__(76);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_123__components_nav_nav__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_123__components_nav_nav__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_124__components_nav_nav_pop__ = __webpack_require__(74);
 /* unused harmony reexport NavPop */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_125__components_nav_nav_pop_anchor__ = __webpack_require__(161);
@@ -40847,7 +40921,7 @@ function SplitPane_tsickle_Closure_declarations() {
 /* unused harmony reexport isActivatable */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_158__components_toast_toast__ = __webpack_require__(202);
 /* unused harmony reexport Toast */
-/* unused harmony reexport ToastController */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_26__components_toast_toast_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_159__components_toggle_toggle__ = __webpack_require__(204);
 /* unused harmony reexport Toggle */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_160__components_toolbar_toolbar_base__ = __webpack_require__(96);
@@ -40872,18 +40946,18 @@ function SplitPane_tsickle_Closure_declarations() {
 /* unused harmony reexport setupConfig */
 /* unused harmony reexport ConfigToken */
 /* unused harmony reexport DomController */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_22__platform_platform__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_22__platform_platform__["a"]; });
 /* unused harmony reexport setupPlatform */
 /* unused harmony reexport Haptic */
 /* unused harmony reexport DeepLinker */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_169__navigation_ionic_page__ = __webpack_require__(272);
-/* unused harmony reexport IonicPage */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_169__navigation_ionic_page__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_170__navigation_nav_controller__ = __webpack_require__(19);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_170__navigation_nav_controller__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_170__navigation_nav_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_171__navigation_nav_controller_base__ = __webpack_require__(48);
 /* unused harmony reexport NavControllerBase */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_172__navigation_nav_params__ = __webpack_require__(20);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_172__navigation_nav_params__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_172__navigation_nav_params__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_173__navigation_nav_util__ = __webpack_require__(25);
 /* unused harmony reexport DeepLinkMetadata */
 /* unused harmony reexport DeepLinkMetadataFactory */
@@ -40946,7 +41020,7 @@ function SplitPane_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_192__gestures_gesture_config__ = __webpack_require__(268);
 /* unused harmony reexport IonicGestureConfig */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IonicModule; });
-/* unused harmony export IonicPageModule */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return IonicPageModule; });
 /* unused harmony export provideLocationStrategy */
 /**
  * Import Angular
@@ -45021,6 +45095,7 @@ var cordovaWarn = function (pluginName, method) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return benchmarks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FarmerInputPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -45033,6 +45108,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+var benchmarks = [{
+        requirement: "Your farm has no history of Anthrax, Anjeszsky’s Disease, Tuberculosis, Trichinosis for the past 12 months?"
+    },
+    {
+        requirement: "No restrictions or quarantine for your area?"
+    },
+    {
+        requirement: "Any Antibiotics used? (In the last 30 days?)"
+    },
+    {
+        requirement: "Free Range?"
+    },
+    {
+        requirement: "Grass feed"
+    },
+    {
+        requirement: "Corn feed."
+    },
+    {
+        requirement: "Hormones?"
+    },
+    {
+        requirement: "Deforastation Free"
+    },
+    {
+        requirement: "Forced Labor Free"
+    },
+    {
+        requirement: "Indigenous Land Free"
+    },
+    {
+        requirement: "No Protected Areas"
+    },
+    {
+        requirement: "No Embargo"
+    }];
 var FarmerInputPage = (function () {
     function FarmerInputPage(navCtrl) {
         this.navCtrl = navCtrl;
@@ -45044,44 +45155,7 @@ var FarmerInputPage = (function () {
     };
     ;
     FarmerInputPage.prototype.getProtocols = function () {
-        this.protocols = [
-            {
-                requirement: "Your farm has no history of Anthrax, Anjeszsky’s Disease, Tuberculosis, Trichinosis for the past 12 months?"
-            },
-            {
-                requirement: "No restrictions or quarantine for your area?"
-            },
-            {
-                requirement: "Any Antibiotics used? (In the last 30 days?)"
-            },
-            {
-                requirement: "Free Range?"
-            },
-            {
-                requirement: "Grass feed"
-            },
-            {
-                requirement: "Corn feed."
-            },
-            {
-                requirement: "Hormones?"
-            },
-            {
-                requirement: "Deforastation Free"
-            },
-            {
-                requirement: "Forced Labor Free"
-            },
-            {
-                requirement: "Indigenous Land Free"
-            },
-            {
-                requirement: "No Protected Areas"
-            },
-            {
-                requirement: "No Embargo"
-            }
-        ];
+        this.protocols = benchmarks;
     };
     FarmerInputPage.prototype.getCountries = function () {
         this.countries = [
@@ -45127,7 +45201,7 @@ FarmerInputPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({
         selector: 'farmer-input',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-input/farmer-input.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12>\n        <ion-card>\n          <ion-card-content>\n            <ion-card-title>\n              Add Farmer Data\n            </ion-card-title>\n            <p>\n              Hello Dear Farmer, welcome to GlobalFarmers. Tell us about your ranch:\n            </p>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col col-12>\n        <ion-card>\n          <ion-card-content>\n            <ion-list>\n              <ion-item>\n                <ion-label color="dark">My animals were born in: </ion-label>\n                <ion-select [(ngModel)]="born_country">\n                  <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>\n                </ion-select>\n              </ion-item>\n              <ion-item>\n                <ion-label color="dark">They have lived the last 30 days in: </ion-label>\n                <ion-select [(ngModel)]="last_country">\n                  <ion-option *ngFor="let country of countries" value="{{country}}">{{country}}</ion-option>\n                </ion-select>\n              </ion-item>\n              <ion-item>\n                <ion-label color="dark">Livestock Breed</ion-label>\n                <ion-select [(ngModel)]="breed">\n                  <ion-option *ngFor="let breed of breeds" value="{{breed}}">{{breed}}</ion-option>\n                </ion-select>\n              </ion-item>\n              <ion-item *ngFor="let protocol of protocols">\n                <ion-label>{{ protocol.requirement }}</ion-label>\n                <ion-checkbox color="secondary" checked="false"></ion-checkbox>\n              </ion-item>\n            </ion-list>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n    <ion-row text-center>\n      <ion-col col-12>\n        <button large ion-button secondary menuToggle>Find Exporters for me</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-input/farmer-input.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
 ], FarmerInputPage);
 
 //# sourceMappingURL=farmer-input.js.map
@@ -45151,40 +45225,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var ListPage = ListPage_1 = (function () {
+var ListPage = (function () {
     function ListPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        // If we navigated to this page, we will have an item available as a nav param
-        this.selectedItem = navParams.get('item');
-        // Let's populate this page with some filler content for funzies
-        this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-            'american-football', 'boat', 'bluetooth', 'build'];
-        this.items = [];
-        for (var i = 1; i < 11; i++) {
-            this.items.push({
-                title: 'Item ' + i,
-                note: 'This is item #' + i,
-                icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-            });
-        }
+        var matches = navParams.get('matches');
+        this.matches = matches;
     }
     ListPage.prototype.itemTapped = function (event, item) {
-        // That's right, we're pushing to ourselves!
-        this.navCtrl.push(ListPage_1, {
-            item: item
-        });
+        console.log(item); // Exporter Type
+        // TODO: Got to message if ID is correct
     };
     return ListPage;
 }());
-ListPage = ListPage_1 = __decorate([
+ListPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({
-        selector: 'page-list',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-left></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-right>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/list/list.html"*/
+        selector: 'page-list',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let match of matches">\n      {{match.name}}\n      {{match.region}}\n      <div class="item-note" item-right>\n        <button ion-button (click)="itemTapped($event, match)">Message</button>\n      </div>\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/list/list.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
 ], ListPage);
 
-var ListPage_1;
 //# sourceMappingURL=list.js.map
 
 /***/ }),
@@ -57361,7 +57421,7 @@ HomePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({
         selector: 'page-home',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Global Farmers</ion-title>\n    <!-- <ion-label text-left>Connecting Farmers with Meat Exporters</ion-label> -->\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding text-center>\n\n  <ion-grid>\n    <ion-row padding>\n      <ion-col col-12>\n        <ion-card>\n          <ion-card-content>\n            <ion-card-title>\n              Welcome to GlobalFarmers\n            </ion-card-title>\n            <h2>\n              Our mission is to empower global-minded farmers to build a sustainable livestock market that feed our world\n            </h2>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid class="home card-background-page" >\n    <ion-row padding>\n      <ion-col col-12 col-md-6 col-lg-6 col-xl-6>\n        <ion-card>\n         <img style="height: 350px;" src="assets/img/home-farmer.jpg" />\n         <div class="card-title">I am a Farmer</div>\n         <div class="card-subtitle">\n           <button  ion-button secondary (click)="navToFarmer()" large>Join</button>\n         </div>\n       </ion-card>\n      </ion-col>\n      <ion-col col-12 col-md-6 col-lg-6 col-xl-6>\n       <ion-card>\n         <img style="height: 350px;" src="assets/img/home-exporter.jpg"/>\n         <div class="card-title">I am an Exporter</div>\n         <div class="card-subtitle">\n          <button ion-button secondary (click)="navToExporter()" large>Join</button>\n         </div>\n       </ion-card>\n      </ion-col>\n    </ion-row>\n\n    <!-- <ion-row responsive-sm>\n      <ion-col text-center>\n        <button ion-button secondary (click)="navToFarmer()">I am a Farmer</button>\n      </ion-col>\n    </ion-row>\n    <ion-row responsive-sm>\n      <ion-col text-center>\n        <button ion-button secondary (click)="navToExporter()">I am an Exporter</button>\n      </ion-col>\n    </ion-row> -->\n\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
 ], HomePage);
 
 //# sourceMappingURL=home.js.map
@@ -78014,15 +78074,34 @@ module.exports = g;
 
 /***/ }),
 /* 241 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyContext(req) {
-	throw new Error("Cannot find module '" + req + "'.");
-}
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 241;
+var map = {
+	"../pages/exporter-contact/exporter-contact.module": [
+		311,
+		3
+	],
+	"../pages/farmer-contact/farmer-contact.module": [
+		312,
+		2
+	],
+	"../pages/farmer-dashboard/farmer-dashboard.module": [
+		313,
+		1
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+module.exports = webpackAsyncContext;
+webpackAsyncContext.id = 241;
 
 
 /***/ }),
@@ -78223,8 +78302,11 @@ var platformBrowserDynamic = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_farmer_input_farmer_input__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_farmer_contact_farmer_contact__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_farmer_dashboard_farmer_dashboard__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_exporter_contact_exporter_contact__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__ = __webpack_require__(107);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -78232,6 +78314,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -78252,22 +78337,34 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
             __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */],
             __WEBPACK_IMPORTED_MODULE_5__pages_list_list__["a" /* ListPage */],
-            __WEBPACK_IMPORTED_MODULE_6__pages_farmer_input_farmer_input__["a" /* FarmerInputPage */]
+            __WEBPACK_IMPORTED_MODULE_6__pages_farmer_input_farmer_input__["a" /* FarmerInputPage */],
+            __WEBPACK_IMPORTED_MODULE_7__pages_farmer_contact_farmer_contact__["a" /* FarmerContact */],
+            __WEBPACK_IMPORTED_MODULE_8__pages_farmer_dashboard_farmer_dashboard__["a" /* FarmerDashboard */],
+            __WEBPACK_IMPORTED_MODULE_9__pages_exporter_contact_exporter_contact__["a" /* ExporterContact */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */]),
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
+                links: [
+                    { loadChildren: '../pages/exporter-contact/exporter-contact.module#ExporterContactModule', name: 'ExporterContact', segment: 'exporter-contact', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/farmer-contact/farmer-contact.module#FarmerContactModule', name: 'FarmerContact', segment: 'farmer-contact', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/farmer-dashboard/farmer-dashboard.module#FarmerDashboardModule', name: 'FarmerDashboard', segment: 'farmer-dashboard', priority: 'low', defaultHistory: [] }
+                ]
+            }),
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
         entryComponents: [
             __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
             __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */],
             __WEBPACK_IMPORTED_MODULE_5__pages_list_list__["a" /* ListPage */],
-            __WEBPACK_IMPORTED_MODULE_6__pages_farmer_input_farmer_input__["a" /* FarmerInputPage */]
+            __WEBPACK_IMPORTED_MODULE_6__pages_farmer_input_farmer_input__["a" /* FarmerInputPage */],
+            __WEBPACK_IMPORTED_MODULE_7__pages_farmer_contact_farmer_contact__["a" /* FarmerContact */],
+            __WEBPACK_IMPORTED_MODULE_8__pages_farmer_dashboard_farmer_dashboard__["a" /* FarmerDashboard */],
+            __WEBPACK_IMPORTED_MODULE_9__pages_exporter_contact_exporter_contact__["a" /* ExporterContact */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__["a" /* SplashScreen */],
             { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["b" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] }
         ]
     })
@@ -104591,6 +104688,9 @@ function CordovaFiniteObservable(opts) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_farmer_input_farmer_input__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_farmer_contact_farmer_contact__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_farmer_dashboard_farmer_dashboard__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_exporter_contact_exporter_contact__ = __webpack_require__(307);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -104601,6 +104701,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
+
 
 
 
@@ -104619,7 +104722,10 @@ var MyApp = (function () {
         this.pages = [
             { title: 'Home', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] },
             { title: 'List', component: __WEBPACK_IMPORTED_MODULE_5__pages_list_list__["a" /* ListPage */] },
-            { title: 'Farmer Input', component: __WEBPACK_IMPORTED_MODULE_6__pages_farmer_input_farmer_input__["a" /* FarmerInputPage */] }
+            { title: 'Farmer Input', component: __WEBPACK_IMPORTED_MODULE_6__pages_farmer_input_farmer_input__["a" /* FarmerInputPage */] },
+            { title: 'Farmer Contact TODO: rm from menu', component: __WEBPACK_IMPORTED_MODULE_7__pages_farmer_contact_farmer_contact__["a" /* FarmerContact */] },
+            { title: 'Exporter Contact TODO: rm from menu', component: __WEBPACK_IMPORTED_MODULE_9__pages_exporter_contact_exporter_contact__["a" /* ExporterContact */] },
+            { title: 'Farmer Dashboard', component: __WEBPACK_IMPORTED_MODULE_8__pages_farmer_dashboard_farmer_dashboard__["a" /* FarmerDashboard */] }
         ];
     }
     MyApp.prototype.initializeApp = function () {
@@ -104639,13 +104745,13 @@ var MyApp = (function () {
     return MyApp;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */]),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */])
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
 
 //# sourceMappingURL=app.component.js.map
@@ -111165,7 +111271,7 @@ function PanRecognizer_tsickle_Closure_declarations() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export IonicPage */
+/* harmony export (immutable) */ __webpack_exports__["a"] = IonicPage;
 /**
  * \@name IonicPage
  * \@description
@@ -114306,6 +114412,206 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
 //# sourceMappingURL=main.js.map
+
+/***/ }),
+/* 307 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExporterContact; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the ExporterContact page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+var ExporterContact = (function () {
+    function ExporterContact(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    ExporterContact.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ExporterContact');
+    };
+    return ExporterContact;
+}());
+ExporterContact = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({
+        selector: 'page-exporter-contact',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/exporter-contact/exporter-contact.html"*/'<!--\n  Generated template for the ExporterContact page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>exporterContact</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/exporter-contact/exporter-contact.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+], ExporterContact);
+
+//# sourceMappingURL=exporter-contact.js.map
+
+/***/ }),
+/* 308 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FarmerContact; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the FarmerContact page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+var FarmerContact = (function () {
+    function FarmerContact(navCtrl, navParams, toastCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.toastCtrl = toastCtrl;
+    }
+    FarmerContact.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad FarmerContact');
+    };
+    FarmerContact.prototype.sendMessage = function (message) {
+        console.log('sending message: ', message);
+        var toast = this.toastCtrl.create({
+            message: "Message \"" + message.value + "\" was sent successfully",
+            duration: 3000,
+            position: 'top'
+        });
+        toast.present();
+        message.value = '';
+    };
+    return FarmerContact;
+}());
+FarmerContact = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({
+        selector: 'page-farmer-contact',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-contact/farmer-contact.html"*/'<!--\n  Generated template for the FarmerContact page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Farmer Profile</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n<!-- Name/photo -->\n<ion-card>\n  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Farmer%2C_Nicaragua.jpg/1280px-Farmer%2C_Nicaragua.jpg">\n\n  <ion-card-header>\n    Dr. Antonio Cardoso\n  </ion-card-header>\n\n  <ion-card-content>\n    <p> Region: <strong>Brazil</strong> </p>\n    <p> Email: <a href="mailto:antoniocardoso@aol.com">antoniocardoso@aol.com</a> </p>\n    <p> Cattle for Sale: <strong>400 heads</strong> <p>\n      <ion-input placeholder="Send Antonio a message" #message></ion-input>\n    <div style="text-align: center;">\n      <button ion-button secondary (click)="sendMessage(message)">Send Message</button>\n    </div>\n  </ion-card-content>\n\n</ion-card>\n<ion-card>\n\n  <ion-card-header>\n    <h4>Cattle Compliance:</h4>\n  </ion-card-header>\n\n  <ion-card-content>\n    GSRB, USDA, PRODUZINDO CERTO\n  </ion-card-content>\n\n</ion-card>\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-contact/farmer-contact.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ToastController */]])
+], FarmerContact);
+
+//# sourceMappingURL=farmer-contact.js.map
+
+/***/ }),
+/* 309 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list_list__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_exporter__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__farmer_input_farmer_input__ = __webpack_require__(51);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FarmerDashboard; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var exporters = [
+    {
+        name: 'Texico',
+        region: 'Mexico',
+        benchmarks: __WEBPACK_IMPORTED_MODULE_4__farmer_input_farmer_input__["b" /* benchmarks */]
+    }, {
+        name: 'US Exporters',
+        region: 'USA',
+        benchmarks: __WEBPACK_IMPORTED_MODULE_4__farmer_input_farmer_input__["b" /* benchmarks */]
+    }
+];
+/**
+ * Generated class for the FarmerDashboard page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+var FarmerDashboard = (function () {
+    function FarmerDashboard(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    FarmerDashboard.prototype.ngOnInit = function () {
+        this.setupMatches();
+        this.priceRange = {
+            min: 5,
+            max: 50
+        };
+        this.potential = {
+            benchmarksRequired: 2,
+            matches: 3,
+            maxIncomeIncrease: 50
+        };
+    };
+    FarmerDashboard.prototype.setupMatches = function () {
+        this.matches = exporters.map(function (exporter) {
+            return new __WEBPACK_IMPORTED_MODULE_3__models_exporter__["a" /* Exporter */](exporter.region, exporter.name, exporter.benchmarks);
+        });
+    };
+    FarmerDashboard.prototype.viewMatches = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__list_list__["a" /* ListPage */], {
+            matches: this.matches
+        });
+    };
+    return FarmerDashboard;
+}());
+FarmerDashboard = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* Component */])({
+        selector: 'page-farmer-dashboard',template:/*ion-inline-start:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-dashboard/farmer-dashboard.html"*/'<!--\n  Generated template for the FarmerDashboard page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Your Dashboard!</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n  <ion-card (click)="viewMatches()">\n    <ion-card-header>\n      Matches\n    </ion-card-header>\n    <ion-card-content>\n      You have {{matches.length}} matches!\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card>\n    <ion-card-header>\n      Current\n    </ion-card-header>\n    <ion-card-content>\n      You can make between {{priceRange.min}} and {{priceRange.max}} dollars per pound based on your matches!\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card>\n    <ion-card-header>\n      Potential\n    </ion-card-header>\n    <ion-card-content>\n      You only need to apply {{potential.benchmarksRequired}} more benchmarks to gain {{potential.matches}} more matches for a potential gain of {{potential.maxIncomeIncrease}} per pound!\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"/Users/VEGA/GitHub/CM/internet-of-cows/cow-client/src/pages/farmer-dashboard/farmer-dashboard.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+], FarmerDashboard);
+
+//# sourceMappingURL=farmer-dashboard.js.map
+
+/***/ }),
+/* 310 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Exporter; });
+var Exporter = (function () {
+    function Exporter(region, name, benchmarks, id) {
+        this.region = region;
+        this.name = name;
+        this.benchmarks = benchmarks;
+        this.id = id;
+    }
+    return Exporter;
+}());
+
+//# sourceMappingURL=exporter.js.map
 
 /***/ })
 /******/ ]);
