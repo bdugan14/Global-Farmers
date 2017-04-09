@@ -57,7 +57,8 @@ export class FarmerDashboard {
 
   viewMatches() {
     this.navCtrl.push(ListPage, {
-      matches: this.matches
+      matches: this.matches,
+      isExporter: false
     })
   }
 }

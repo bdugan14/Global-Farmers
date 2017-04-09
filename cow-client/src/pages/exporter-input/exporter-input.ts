@@ -1,7 +1,21 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FarmerDashboard } from '../farmer-dashboard/farmer-dashboard';
+import { ListPage } from '../list/list';
+import { Exporter } from '../../models/exporter';
+import { benchmarks } from '../farmer-input/farmer-input';
 
+const exporters = [
+  {
+    name: 'Texico',
+    region: 'Mexico',
+    benchmarks
+  }, {
+    name: 'US Exporters',
+    region: 'USA',
+    benchmarks
+  }
+];
 let reqBuilder = function(item){
   return {
     requirement: item
@@ -22,6 +36,7 @@ export class ExporterInput {
   protocols: any;
   countries: any;
   breeds: any;
+  matches: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -66,5 +81,18 @@ export class ExporterInput {
       "Thailand",
       "France"
     ]
+  }
+
+  viewMatches() {
+    this.navCtrl.push(ListPage, {
+      matches: this.matches,
+      isExporter: false
+    })
+  }
+  setupMatches() {
+    this.matches = exporters.map((exporter) => {
+      return new Exporter(exporter.region, exporter.name, exporter.benchmarks);
+    });
+
   }
 }
