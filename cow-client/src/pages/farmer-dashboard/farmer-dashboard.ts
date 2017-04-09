@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ListPage } from '../list/list';
+import { FarmerContact } from '../farmer-contact/farmer-contact';
 import { Exporter } from '../../models/exporter';
 import { benchmarks } from '../farmer-input/farmer-input';
 
@@ -60,5 +61,9 @@ export class FarmerDashboard {
       matches: this.matches,
       isExporter: false
     })
+  }
+
+  viewMyProfile(){
+    this.navCtrl.push(FarmerContact)
   }
 }
